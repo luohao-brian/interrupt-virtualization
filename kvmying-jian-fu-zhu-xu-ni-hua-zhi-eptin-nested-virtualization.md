@@ -2,8 +2,6 @@
 
 而在《KVM硬件辅助虚拟化之 EPT》一文中，我们详细分析了单层虚拟机并引入硬件辅助虚拟化EPT功能的环境下，Guest OS中的虚拟地址到真实物理地址的访问方法，即在EPT页表的帮助下，通过二维的页表机制，最终实现GVA到HPA的转换。那么在多层嵌套虚拟机情况下，EPT又是如何发挥作用的呢？
 
-## 引言 {#引言}
-
 关于Nested Virtualization背后的详细理论细节可参看：  
 “The Turtles Project: Design and Implementation of Nested Virtualization”一文。  
 附:[论文](https://www.usenix.org/legacy/event/osdi10/tech/full_papers/Ben-Yehuda.pdf),[视频](https://www.usenix.org/conference/osdi10/turtles-project-design-and-implementation-nested-virtualization)

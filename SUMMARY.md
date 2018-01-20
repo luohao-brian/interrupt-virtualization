@@ -11,4 +11,6 @@
 * [Qemu之Network Device全虚拟方案三:I/O虚拟化](qemuzhi-network-device-quan-xu-ni-fang-an-4e093a-i-o-xu-ni-hua.md)
 * [KVM Run Process之Qemu核心流程](kvm-run-processzhi-qemu-he-xin-liu-cheng.md)
 * [KVM Run Process之KVM核心流程](kvm-run-processzhi-kvm-he-xin-liu-cheng.md)
+* [中断虚拟化一](zhong-duan-xu-ni-hua-yi.md)
+* [中断虚拟化二](zhong-duan-xu-ni-hua-er.md)
 
