@@ -2,36 +2,34 @@
 
 # 1. 安装QEMU-KVM
 
-见前文。
+[见前文。](https://luohao-brian.gitbooks.io/interrupt-virtualization/content/chapter1.html)
 
 ## 2. 安装KVM内核模块 {#2-_安装KVM内核模块}
 
-见前文。
+[见前文。](https://luohao-brian.gitbooks.io/interrupt-virtualization/content/chapter1.html)
 
 ## 3. 编译Linux源码 {#3-_编译Linux源码}
 
 ### 3.1 下载合适的内核源码 {#3-1_下载合适的内核源码}
 
-1. 链接：
-   [http://www.kernel.org](http://www.kernel.org/)
-   文件名linux-3.4.1.tar.gz
+1. 链接：[http://www.kernel.org](http://www.kernel.org/)文件名linux-3.4.1.tar.gz
 2. 解压下载的包：
 
-| $tar –zxvf linux-3.4.1.tar.gz  |
-| :--- |
-
+```
+$tar –zxvf linux-3.4.1.tar.gz
+```
 
 ### 3.2 编译内核 {#3-2_编译内核}
 
-| $cd linux-3.4.1 $make defconfig $make menuconfig  |
-| :--- |
-
+```
+$tar –zxvf linux-3.4.1.tar.gz
+```
 
 进入图形配置界面，若报错，可安装ncurses包
 
-| $sudo apt-get install libncurses5-dev  |
-| :--- |
-
+```
+$tar –zxvf linux-3.4.1.tar.gz
+```
 
 配置Virtualization项-&gt;
 
@@ -47,9 +45,9 @@ KVM for Intel processors support两项
 
 ![](http://7j1zng.com1.z0.glb.clouddn.com/2.png)
 
-| $make bzImage   //生成bzImage内核镜像  |
-| :--- |
-
+```
+$make bzImage   //生成bzImage内核镜像
+```
 
 开始编译，编译完的结果如图：
 
@@ -70,35 +68,24 @@ KVM for Intel processors support两项
    文件为busybox-1.22.1.tar.gz2
 2. 解压
 
-| $tar –xf busybox-1.22.1.tar.gz2  |
-| :--- |
-
+```
+$tar –xf busybox-1.22.1.tar.gz2
+```
 
 ### 4.2 编译busybox {#4-2_编译busybox}
 
-| $make defconfig $make menuconfig  |
-| :--- |
-
+```
+$make defconfig $make menuconfig
+```
 
 因为Linux运行环境中是不带动态链接库的，所以必须以静态方式来编译BusyBox。
 
 修改：
 
 ```
-Busybox 
-Settings ---
->
-Build 
-Options ---
->
-
-        [*] 
-Build 
-BusyBox 
-as a static 
-binary(no 
-shared libs)
-
+Busybox Settings --->
+    Build Options --->
+        [*] Build BusyBox as a static binary(no shared libs)
 ```
 
 ![](http://7j1zng.com1.z0.glb.clouddn.com/4.png)
@@ -107,41 +94,47 @@ shared libs)
 
 ![](http://7j1zng.com1.z0.glb.clouddn.com/6.png)
 
-| $make $make install  |
-| :--- |
-
+```
+$make 
+$make install
+```
 
 ### 4.3 制作initramfs {#4-3_制作initramfs}
 
 * 编写initrd启动脚本,$BUSYBOX为busybox包解压后的目录
 
-| $cd$BUSYBOX/\_install $mkdir proc sys dev etc etc/init.d $vim$BUSYBOX/\_install/etc/init.d/rcS  |
-| :--- |
-
+```
+$cd $BUSYBOX/_install
+$mkdir proc sys dev etc etc/init.d
+$vim $BUSYBOX/_install/etc/init.d/rcS
+```
 
 输入:
 
-| \#!/bin/sh mount -t proc none /proc mount -t sysfs none /sys /sbin/mdev -s  |
-| :--- |
-
+```
+#!/bin/sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+/sbin/mdev -s
+```
 
 * 编写构建initrd镜像脚本
 
-| $vim$KERNEL/build-initrd.sh  |
-| :--- |
-
+```
+$vim $KERNEL/build-initrd.sh
+```
 
 输入：
 
-| \#!/bin/sh KERNEL = $\(pwd\) BUSYBOX = $\(find busybox\* -maxdepth 0\) LINUX = $\(find linux\* -maxdepth 0\) cd$BUSYBOX/\_install find . \| cpio -o --format=newrc &gt;$KERNEL/rootfs.img cd$KERNEL gzip -c rootfs.img &gt; rootfs.img.gz  |
-| :--- |
-
+```
+#!/bin/sh KERNEL = $(pwd) BUSYBOX = $(find busybox* -maxdepth 0) LINUX = $(find linux* -maxdepth 0) cd$BUSYBOX/_install find . | cpio -o --format=newrc >$KERNEL/rootfs.img cd$KERNEL gzip -c rootfs.img > rootfs.img.gz
+```
 
 * 运行脚本
 
-| $sudo ./build-initrd.sh  |
-| :--- |
-
+```
+$sudo ./build-initrd.sh
+```
 
 若有权限问题，更改下文件的权限，注意目录层次.  
 $KERNEL为linux源码解压后的目录，busybox源码也在该目录下。
@@ -152,9 +145,10 @@ $KERNEL为linux源码解压后的目录，busybox源码也在该目录下。
 
 ### 5.1 启动命令 {#5-1_启动命令}
 
-| $sudo /usr/local/kvm/bin/qemu-system-x86\_64 -kernel \ 	./kvm\_guest/bzImage -initrd rootfs.img -append "root=/dev/ram rdinit=sbin/init noapic"  |
-| :--- |
-
+```
+$sudo /usr/local/kvm/bin/qemu-system-x86_64 -kernel \
+	./kvm_guest/bzImage -initrd rootfs.img -append "root=/dev/ram rdinit=sbin/init noapic"
+```
 
 ### 5.2 参数解释 {#5-2_参数解释}
 
@@ -178,9 +172,9 @@ $KERNEL为linux源码解压后的目录，busybox源码也在该目录下。
 
 启动命令加入-smp 4选项后
 
-| $cat /proc/cpuinfo  |
-| :--- |
-
+```
+$cat /proc/cpuinfo
+```
 
 ![](http://7j1zng.com1.z0.glb.clouddn.com/14.png)
 
