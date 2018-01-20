@@ -13,4 +13,5 @@
 * [KVM Run Process之KVM核心流程](kvm-run-processzhi-kvm-he-xin-liu-cheng.md)
 * [中断虚拟化一](zhong-duan-xu-ni-hua-yi.md)
 * [中断虚拟化二](zhong-duan-xu-ni-hua-er.md)
+* [KVM之内存虚拟化\(KVM MMU Virtualization\)](kvmzhi-nei-cun-xu-ni531628-kvm-mmu-virtualization.md)
 
