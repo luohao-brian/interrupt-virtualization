@@ -2,9 +2,9 @@
 
 确定CPU是否具有Virtualization Function：
 
-| $ cat /proc/cpuinfo \|grep vmx |
-| :--- |
-
+```
+$ cat /proc/cpuinfo | grep vmx
+```
 
 若有输出则表示该CPU支持Virtualization。  
 同时在BIOS中将虚拟化支持选项打开。
@@ -24,9 +24,9 @@ Ubuntu官网下载最新的iso文件，最新版本为Ubuntu 14.04 LTS\(链接�
 
 * 预安装相关开发包
 
-| $sudo apt-get install gcc libsdl1.2-dev zlib1g-dev libasound2-dev      linux-kernel-headers pkg-config libgnutls-dev libpci-dev |
-| :--- |
-
+```
+$sudo apt-get install gcc libsdl1.2-dev zlib1g-dev libasound2-dev      linux-kernel-headers pkg-config libgnutls-dev libpci-dev
+```
 
 * 下载qemu-kvm-release.tar.gz
 
@@ -36,16 +36,16 @@ Ubuntu官网下载最新的iso文件，最新版本为Ubuntu 14.04 LTS\(链接�
 
 * 对下载的qemu-kvm软件包编译安装
 
-| $tar zxvf qemu-kvm-1.2.0.tar.gz $cd qemu-kvm-1.2.0 |
-| :--- |
-
+```
+$tar zxvf qemu-kvm-1.2.0.tar.gz $cd qemu-kvm-1.2.0
+```
 
 注意：该qemu-kvm版本在Ubunut14.04 上是无法编过的，需要打一个Patch，Patch如下，可根据diff对configure文件进行修改。  
 ![](http://7j1zbu.com1.z0.glb.clouddn.com/2.png)
 
-| $./configure –prefix=/usr/local/kvm     //表示qemu-kvm工具安装目录 $make $sudo make install |
-| :--- |
-
+```
+$./configure –prefix=/usr/local/kvm     //表示qemu-kvm工具安装目录 $make $sudo make install
+```
 
 安装完后会在/usr/local/kvm/bin目录下存在qemu-img/qemu-system-x86\_64等工具,至此，用户态工具安装完成。
 
@@ -53,15 +53,15 @@ Ubuntu官网下载最新的iso文件，最新版本为Ubuntu 14.04 LTS\(链接�
 
 KVM内核模块包括：kvm.ko、kvm-intel.ko，可以先：
 
-| $lsmod \|grep kvm |
-| :--- |
-
+```
+$lsmod |grep kvm
+```
 
 若有kvm.ko及kvm-intel.ko相关输出，则说明已经安装了kvm内核模块。否则进行安装
 
-| $sudo /sbin/modprobe kvm-intel |
-| :--- |
-
+```
+$lsmod |grep kvm
+```
 
 ### 1.4 Guset OS安装 {#1-4_Guset_OS安装}
 
@@ -69,9 +69,9 @@ KVM内核模块包括：kvm.ko、kvm-intel.ko，可以先：
 
 ![](http://7j1zbu.com1.z0.glb.clouddn.com/3.png)
 
-| $/usr/local/kvm/bin/qemu-img create -f qcow2 vdisk\_linux.img 10G |
-| :--- |
-
+```
+$/usr/local/kvm/bin/qemu-img create -f qcow2 vdisk_linux.img 10G
+```
 
 参数说明：
 
@@ -83,9 +83,9 @@ KVM内核模块包括：kvm.ko、kvm-intel.ko，可以先：
 
 * 启动Guest OS安装
 
-| $sudo /usr/local/kvm/bin/qemu-system-x86\_64 -hda vdisk\_linux.img      –cdrom ubuntu-14.04-desktop-amd64.iso -boot d -m 1024 |
-| :--- |
-
+```
+$sudo /usr/local/kvm/bin/qemu-system-x86_64 -hda vdisk_linux.img      –cdrom ubuntu-14.04-desktop-amd64.iso -boot d -m 1024
+```
 
 参数说明：
 
@@ -114,9 +114,9 @@ KVM内核模块包括：kvm.ko、kvm-intel.ko，可以先：
 
 安装完成之后，重启进入已安装的系统：
 
-| $sudo /usr/local/kvm/bin/qemu-system-x86\_64 –had vdisk\_linux.img –boot d –m 1024 |
-| :--- |
-
+```
+$sudo /usr/local/kvm/bin/qemu-system-x86_64 -hda vdisk_linux.img      –cdrom ubuntu-14.04-desktop-amd64.iso -boot d -m 1024
+```
 
 此时相对于安装时删掉–cdrom ubuntu-14.04-desktop-amd64.iso.iso让其从硬盘启动
 
@@ -134,15 +134,15 @@ KVM内核模块包括：kvm.ko、kvm-intel.ko，可以先：
 
 * 创建虚拟磁盘
 
-| $/usr/local/kvm/bin/qemu-img create -f qcow2 vdisk\_win7.img 10G |
-| :--- |
-
+```
+$/usr/local/kvm/bin/qemu-img create -f qcow2 vdisk_win7.img 10G
+```
 
 * 启动iso的安装
 
-| $sudo /usr/local/kvm/bin/qemu-system-x86\_64 -hda vdisk\_win7.img      –cdrom win7\_64\_cn.iso -boot d -m 1024 |
-| :--- |
-
+```
+$sudo /usr/local/kvm/bin/qemu-system-x86_64 -hda vdisk_win7.img      –cdrom win7_64_cn.iso -boot d -m 1024
+```
 
 ![](http://7j1zbu.com1.z0.glb.clouddn.com/10.png)
 
@@ -152,9 +152,9 @@ KVM内核模块包括：kvm.ko、kvm-intel.ko，可以先：
 
 * 安装完启动
 
-| $sudo /usr/local/kvm/bin/qemu-system-x86\_64 -hda vdisk\_win7.img  -boot d -m 1024 |
-| :--- |
-
+```
+$sudo /usr/local/kvm/bin/qemu-system-x86_64 -hda vdisk_win7.img  -boot d -m 1024
+```
 
 ![](http://7j1zbu.com1.z0.glb.clouddn.com/13.png)
 
