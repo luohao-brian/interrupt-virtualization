@@ -13,12 +13,5 @@
 * [Virtio----Vring Introduce](virtio-vring-introduce.md)
 * [Guest与Virtio Netdev的交互方式](guestyu-virtio-netdev-de-jiao-hu-fang-shi.md)
 * [Virtio----Virtio Netdev Packet Process](virtio-virtio-netdev-packet-process.md)
-* [KVM-Introduce](kvm-introduce.md)
-* [KVM安装与启动过程说明](chapter1.md)
-* [KVM安装与启动过程说明-Kernel源码编译方式](kvman-zhuang-yu-qi-dong-guo-cheng-shuo-660e-kernel-yuan-ma-bian-yi-fang-shi.md)
-* [Qemu之Network Device全虚拟方案一:前端网络流的建立](qemuzhi-network-device-quan-xu-ni-fang-an-4e003a-qian-duan-wang-luo-liu-de-jian-li.md)
-* [Qemu之Network Device全虚拟方案二:虚拟网卡](qemuzhi-network-device-quan-xu-ni-fang-an-4e8c3a-xu-ni-wang-qia.md)
-* [中断虚拟化一](zhong-duan-xu-ni-hua-yi.md)
-* [Hypercall](hypercall.md)
 * [Vhost Architecture](vhost-architecture.md)
 
