@@ -18,4 +18,5 @@
 * [Qemu之Network Device全虚拟方案二:虚拟网卡](qemuzhi-network-device-quan-xu-ni-fang-an-4e8c3a-xu-ni-wang-qia.md)
 * [中断虚拟化一](zhong-duan-xu-ni-hua-yi.md)
 * [Hypercall](hypercall.md)
+* [Guest与Virtio Netdev的交互方式](guestyu-virtio-netdev-de-jiao-hu-fang-shi.md)
 
