@@ -14,4 +14,11 @@
 * [Guest与Virtio Netdev的交互方式](guestyu-virtio-netdev-de-jiao-hu-fang-shi.md)
 * [Virtio----Virtio Netdev Packet Process](virtio-virtio-netdev-packet-process.md)
 * [Vhost Architecture](vhost-architecture.md)
+* [qemu-kvm 中断虚拟化框架分析\(上\)](qemu-kvm-zhong-duan-xu-ni-hua-kuang-jia-fen-679028-4e0a29.md)
+* [qemu-kvm 中断虚拟化框架分析\(中\)](qemu-kvm-zhong-duan-xu-ni-hua-kuang-jia-fen-679028-4e2d29.md)
+* [VT-d Interrupt Remapping 分析](vt-d-interrupt-remapping-fen-xi.md)
+* [VT-d Posted Interrupt 分析](vt-d-posted-interrupt-fen-xi.md)
+* [VT-d DMA Remapping 分析](vt-d-dma-remapping-fen-xi.md)
+* [VFIO 设备直通简介](vfio-she-bei-zhi-tong-jian-jie.md)
+* [VFIO 技术实现中的关键点分析\(1\)](vfio-ji-zhu-shi-xian-zhong-de-guan-jian-dian-fen-679028-1.md)
 
