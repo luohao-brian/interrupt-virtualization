@@ -2,8 +2,6 @@
 
 虚拟运行环境中由于Guest OS所使用的物理地址空间并不是真正的物理内存，而是由VMM供其所使用一层虚拟的物理地址空间，为使MMU能够正确的转换虚实地址，Guest中的地址空间的转换和访问都必须借助VMM来实现，这就是内存虚拟化的主要任务，即：**GVA-&gt;MMU Virtualation-&gt;HPA**，见下图。
 
-
-
 ![](http://7jpnjo.com1.z0.glb.clouddn.com/11.PNG)
 
 ## MMU虚拟化方案 {#MMU虚拟化方案}
@@ -118,7 +116,6 @@ static void vmx_set_cr3(struct kvm_vcpu *vcpu, unsigned long cr3)  参数cr3即�
     vmx_flush_tlb(vcpu);                      //刷新TLB
     vmcs_writel(GUEST_CR3, guest_cr3);        // 指定CR3，指向Guest的页表
 }
-
 ```
 
 其中我们也可以看到，如果enable\_ept开关关闭的话，传入的root\_hpa也就直接当Guest CR3用，其实就是影子页表的基址。
