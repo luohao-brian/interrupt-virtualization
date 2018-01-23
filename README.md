@@ -1,4 +1,4 @@
-# 中断虚拟化
+# Kernelgo's KVM学习笔记
 
-根据这段时间对Linux KVM的研究，现将KVM的安装与Virtual OS的启动进行总结说明。
+Royluo's KVM学习笔记：文章来自[Royluo博客](http://royluo.org/categories/KVM/)，云谷计算整理
 
